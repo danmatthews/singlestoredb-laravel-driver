@@ -13,6 +13,7 @@ This repository contains the official SingleStoreDB Driver for Laravel. This dri
 
 - [Install](#install)
 - [Usage](#usage)
+- [Known Incompatibilities](#known-incompatibilities)
 - [Issues connecting to SingleStore Managed Service](#issues-connecting-to-singlestore-managed-service)
 - [Persistent Connections (performance optimization)](#persistent-connections-performance-optimization)
 - [PHP Versions before 8.1](#php-versions-before-81)
@@ -90,6 +91,10 @@ In case you want to store failed jobs in SingleStore, then make sure you also se
     'table' => 'failed_jobs',
 ],
 ```
+
+## Known Incompatibilities
+
+- The `->change()` column method may not work as expected or at all, as changing column types atomically is not supported in singlestore in this way. Instead, consider creating a new column, migrating the data, deleting the original, then renaming the new one.
 
 ## Issues connecting to SingleStore Managed Service
 
